@@ -142,3 +142,21 @@ familyNet/
 1. **TypeScript 타입 검사** (`npx tsc --noEmit`)
 2. **ESLint 정적 분석** (`npm run lint`)
 3. **웹 프로덕션 번들 빌드 검증** (`npx expo export --platform web`)
+
+---
+
+## 📅 작업 내역 (Changelog)
+
+### 2026-09-07
+- **프로젝트 초기 환경 구축**: Expo SDK 57 및 React Native(0.86.3), React 19 기반 모바일 & 웹 프로젝트 생성
+- **Tailwind CSS 연동**: NativeWind v4 및 Tailwind CSS 3.4 설정 완료 (`global.css`, `tailwind.config.js`, `metro.config.js`, `babel.config.js`)
+- **UI 데모 카드 추가**: `src/app/index.tsx`에 Tailwind `className`을 활용한 반응형 UI 컴포넌트 카드 구현
+- **크로스 플랫폼 실행 스크립트 작성**:
+  - macOS/Linux: `start.sh`, `start-web.sh`, `start.command` (대화형 및 원클릭 실행)
+  - Windows: `start.bat`, `start-web.bat`, `start.cmd`, `start.ps1`
+- **품질 관리 및 CI 설정**: ESLint Flat Config, TypeScript 무결성 검증, GitHub Actions CI(`ci.yml`) 워크플로우 등록
+- **프로젝트 규칙 수립**:
+  - macOS `._*` (AppleDouble) 파일 자동 제거 규칙
+  - Git 한글 커밋 메시지 작성 및 커밋 전 `git pull` 동기화 규칙
+  - README.md 일자별 작업 내역 지속 갱신 규칙
+- **GitHub 연동**: `familynet_app` 원격 저장소 연결 및 코드 푸시 완료
