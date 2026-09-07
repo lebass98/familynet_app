@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 // DESIGN.md("Harmonious Public Care") 토큰을 그대로 옮겨온 설정입니다.
 const plugin = require("tailwindcss/plugin");
-const { platformSelect } = require("nativewind/theme");
 
 /**
  * Pretendard GOV 는 굵기별 정적 파일을 각각의 패밀리 이름으로 로드합니다
@@ -17,16 +16,7 @@ const GOV = {
 };
 
 // 접근성 기준: 최소 16px. (공공 서비스 · 시니어 · 다문화 이용자 가독성)
-const SPACE_MOBILE = {
-  xxs: "6px",
-  xs: "10px",
-  sm: "14px",
-  md: "20px",
-  lg: "30px",
-  xl: "42px",
-  "2xl": "62px",
-  "3xl": "84px",
-};
+const SPACE_TOKENS = ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl"];
 
 const TYPE_SCALE = {
   "display-lg": ["34px", { lineHeight: "42px" }],
@@ -97,15 +87,9 @@ module.exports = {
         xl: "28px",
         full: "9999px",
       },
-      // 여백 스케일 (마진·패딩·gap 공통)
-      // - 네이티브(폰): 모바일 스케일 = 기본의 70%
-      // - 웹: src/global.css 의 CSS 변수 → 768px 미만 70%, 이상 100%
-      spacing: Object.fromEntries(
-        Object.entries(SPACE_MOBILE).map(([name, px]) => [
-          name,
-          platformSelect({ web: `var(--space-${name})`, default: px }),
-        ])
-      ),
+      // 여백 스케일 (마진·패딩·gap 공통) — 값은 src/global.css 의 CSS 변수
+      // (768px 미만 및 네이티브: 70% / 그 이상: 100%)
+      spacing: Object.fromEntries(SPACE_TOKENS.map((name) => [name, `var(--space-${name})`])),
 
     },
   },

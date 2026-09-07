@@ -184,6 +184,11 @@ familyNet/
 
 ## 📅 작업 내역 (Changelog)
 
+### 2026-09-08 (6차) — 모바일 여백·패딩 30% 축소 (반응형 여백 토큰)
+- 여백 토큰(마진·패딩·gap 공통)을 `src/global.css`의 CSS 변수로 이관: 기본(태블릿·데스크톱)은 2배 스케일, `@media (max-width: 767px)`에서 70%(xxs 6 · xs 10 · sm 14 · md 20 · lg 30 · xl 42 · 2xl 62 · 3xl 84)
+- 네이티브는 NativeWind가 `:root` 변수의 마지막 선언을 취하므로 모바일 블록을 뒤에 두어 폰에서 70% 값이 적용되도록 구성(컴파일 결과로 검증), 플로팅 탭바 하단 여백도 네이티브 14px
+- 다문화·마이 언어 선택 띠의 음수 마진(`-mx-md`) 제거(CSS 변수와 `calc` 호환 문제 회피)
+
 ### 2026-09-08 (7차) — GitHub Actions 듀얼 배포 모드(Pages/Branch) 연동 및 점검
 - **배포 방식 이중화**: `peaceiris/actions-gh-pages`(`gh-pages` 브랜치)와 `actions/deploy-pages`(GitHub Actions direct)를 모두 지원하도록 `.github/workflows/ci.yml` 보강
 - **배포 및 빌드 상태 점검**: 최신 워크플로우 실행(`CI & GitHub Pages Deploy`) 성공(Success) 및 `gh-pages` 브랜치 정상 푸시 확인, GitHub Pages 활성화 가이드 보강
