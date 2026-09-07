@@ -1,5 +1,5 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AnimatedIcon } from '@/components/animated-icon';
@@ -38,6 +38,30 @@ export default function HomeScreen() {
             Welcome to&nbsp;Expo
           </ThemedText>
         </ThemedView>
+
+        {/* Tailwind CSS (NativeWind) 적용 확인 카드 */}
+        <View className="w-full bg-indigo-600 rounded-2xl p-5 shadow-lg my-2 border border-indigo-400/30">
+          <View className="flex-row items-center justify-between mb-2">
+            <Text className="text-white text-base font-bold">✨ Tailwind CSS (NativeWind)</Text>
+            <View className="bg-emerald-500/20 px-2.5 py-1 rounded-full border border-emerald-400/40">
+              <Text className="text-emerald-300 text-xs font-semibold">Ready</Text>
+            </View>
+          </View>
+          <Text className="text-indigo-100 text-xs mb-3">
+            모바일(iOS, Android) 및 웹에서 Tailwind CSS 클래스가 적용됩니다.
+          </Text>
+          <View className="flex-row flex-wrap gap-2">
+            <View className="bg-white/10 px-2.5 py-1 rounded-lg">
+              <Text className="text-white text-xs font-medium">#NativeWind v4</Text>
+            </View>
+            <View className="bg-white/10 px-2.5 py-1 rounded-lg">
+              <Text className="text-white text-xs font-medium">#Tailwind CSS</Text>
+            </View>
+            <View className="bg-white/10 px-2.5 py-1 rounded-lg">
+              <Text className="text-white text-xs font-medium">#Expo SDK 57</Text>
+            </View>
+          </View>
+        </View>
 
         <ThemedText type="code" style={styles.code}>
           get started

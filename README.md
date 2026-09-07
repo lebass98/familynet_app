@@ -1,56 +1,144 @@
-# Welcome to your Expo app 👋
+# 📱 familyNet Mobile & Web App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+React Native와 **Expo SDK 57**, 그리고 **Tailwind CSS (NativeWind v4)**를 기반으로 구축된 크로스 플랫폼 모바일 & 웹 애플리케이션입니다.
 
-## Get started
+---
 
-1. Install dependencies
+## 🛠 기술 스택 (Tech Stack)
 
-   ```bash
-   npm install
-   ```
+| 구분 | 기술 / 라이브러리 | 버전 |
+| :--- | :--- | :--- |
+| **Framework** | [Expo SDK](https://expo.dev) | `~57.0.20` |
+| **Core** | [React Native](https://reactnative.dev) | `0.86.3` |
+| **Runtime** | [React](https://react.dev) | `19.2.3` |
+| **Routing** | [Expo Router](https://docs.expo.dev/router/introduction/) | `~57.0.19` (파일 기반 라우팅) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com) & [NativeWind](https://www.nativewind.dev) | Tailwind `^3.4.17` / NativeWind `^4.2.6` |
+| **Language** | [TypeScript](https://www.typescriptlang.org) | `~6.0.3` |
+| **CI / CD** | GitHub Actions | Lint, TypeCheck, Web Export |
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🚀 빠른 시작 (Quick Start) - 모든 OS 지원
 
-In the output, you'll find options to open the app in a
+각 운영체제별 원클릭 실행 배치/스크립트 파일이 준비되어 있습니다.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### 🍎 macOS & 🐧 Linux
 ```bash
-npm run reset-project
+# 1. 대화형 메뉴로 실행 (웹, 모바일, 에뮬레이터 등 선택)
+./start.sh
+
+# 2. 웹 브라우저에서 바로 확인
+./start-web.sh
+# 또는
+./start.sh web
+
+# 3. macOS Finder에서 더블 클릭 실행
+start.command 더블 클릭
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 🪟 Windows
+```cmd
+:: 1. 명령 프롬프트 / 탐색기 더블 클릭으로 대화형 실행
+start.bat
+:: 또는
+start.cmd
 
-### Other setup steps
+:: 2. 웹 브라우저에서 바로 확인 (원클릭)
+start-web.bat
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+:: 3. PowerShell 환경에서 실행
+.\start.ps1
+```
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 💻 표준 npm 명령어
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+# 의존성 설치
+npm install
 
-## Join the community
+# 웹 브라우저로 바로 실행 (http://localhost:8081)
+npm run web
 
-Join our community of developers creating universal apps.
+# Expo 개발 서버 시작 (QR 코드 및 대화형 CLI)
+npm start
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Android 에뮬레이터 실행
+npm run android
+
+# iOS 시뮬레이터 실행 (macOS)
+npm run ios
+
+# TypeScript 타입 검사
+npx tsc --noEmit
+
+# ESLint 코드 스타일 검증
+npm run lint
+```
+
+---
+
+## 🎨 Tailwind CSS (NativeWind v4) 사용법
+
+React Native 표준 컴포넌트(`View`, `Text`, `Pressable`, `TouchableOpacity` 등)에서 웹과 동일하게 `className` 속성을 사용할 수 있습니다.
+
+```tsx
+import { View, Text, Pressable } from 'react-native';
+
+export function ExampleCard() {
+  return (
+    <View className="bg-indigo-600 p-5 rounded-2xl shadow-lg border border-indigo-400/30">
+      <Text className="text-white text-lg font-bold">✨ Tailwind CSS 스타일링</Text>
+      <Text className="text-indigo-100 text-sm mt-1">
+        모바일(iOS/Android)과 웹 모두에서 동일하게 반응형 스타일이 적용됩니다.
+      </Text>
+      <Pressable 
+        className="mt-4 bg-white/20 active:bg-white/30 px-4 py-2 rounded-xl self-start"
+        onPress={() => console.log('clicked')}
+      >
+        <Text className="text-white font-semibold text-sm">확인하기</Text>
+      </Pressable>
+    </View>
+  );
+}
+```
+
+---
+
+## 📁 프로젝트 구조 (Project Structure)
+
+```
+familyNet/
+├── .github/
+│   └── workflows/
+│       └── ci.yml               # GitHub Actions 자동 빌드 & 테스트 워크플로우
+├── assets/                      # 앱 아이콘, 스플래시 이미지 등 정적 리소스
+├── src/
+│   ├── app/                     # Expo Router 기반 화면 (파일 기반 라우팅)
+│   │   ├── _layout.tsx          # 앱 루트 레이아웃 (테마 & global.css 로드)
+│   │   ├── index.tsx            # 메인 홈 화면 (Tailwind 데모 카드 포함)
+│   │   └── explore.tsx          # 탐색 탭 화면
+│   ├── components/              # 재사용 가능한 UI 컴포넌트
+│   ├── constants/               # 테마, 색상 및 레이아웃 상수
+│   ├── hooks/                   # 커스텀 React 훅
+│   └── global.css               # Tailwind CSS 지시어 (@tailwind base, components, utilities)
+├── babel.config.js              # NativeWind JSX 변환 Babel 설정
+├── eslint.config.js             # ESLint Flat Config
+├── metro.config.js              # withNativeWind CSS 번들러 설정
+├── nativewind-env.d.ts          # NativeWind & CSS 모듈 타입 선언
+├── tailwind.config.js           # Tailwind CSS 설정 및 content 경로
+├── start.sh / start-web.sh      # macOS/Linux 실행 스크립트
+├── start.command                # macOS Finder 더블 클릭 실행 파일
+├── start.bat / start-web.bat    # Windows 배치 실행 파일
+└── start.ps1                    # Windows PowerShell 실행 스크립트
+```
+
+---
+
+## 🔄 GitHub Actions CI
+
+`.github/workflows/ci.yml`을 통해 모든 `push` 및 `pull_request` 발생 시 다음 작업이 자동 수행됩니다:
+1. **TypeScript 타입 검사** (`npx tsc --noEmit`)
+2. **ESLint 정적 분석** (`npm run lint`)
+3. **웹 프로덕션 번들 빌드 검증** (`npx expo export --platform web`)
