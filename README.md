@@ -1,6 +1,9 @@
-# 📱 familyNet Mobile & Web App
+# 📱 패밀리넷 (familyNet) 모바일 앱 — 가족e음
 
-React Native와 **Expo SDK 57**, 그리고 **Tailwind CSS (NativeWind v4)**를 기반으로 구축된 크로스 플랫폼 모바일 & 웹 애플리케이션입니다.
+전국 가족센터를 하나의 앱으로 — **홈(디지털 가족패스·원스톱 서비스·맞춤 지원사업)**, **스마트패스(QR·바코드 출석, 공간 예약, 장난감 대여, 육아 품앗이)**, **가족상담(공인 상담사 매칭·마음 날씨·핫라인)**, **다문화·마이(다누리 다국어·이지 모드·진행 서비스·마이 서랍)** 4개 탭으로 구성된 크로스 플랫폼(iOS·Android·Web) 앱입니다.
+React Native + **Expo SDK 57**, **Tailwind CSS (NativeWind v4)** 기반이며, 디자인은 `DESIGN.md`(Harmonious Public Care) 토큰을 따릅니다.
+
+> 현재는 **시연용 목업 데이터**로 동작합니다. `src/services/familynet.ts` 의 구현만 실제 패밀리넷 API 로 교체하면 화면 코드는 그대로 유지됩니다.
 
 ---
 
@@ -14,6 +17,7 @@ React Native와 **Expo SDK 57**, 그리고 **Tailwind CSS (NativeWind v4)**를 �
 | **Routing** | [Expo Router](https://docs.expo.dev/router/introduction/) | `~57.0.19` (파일 기반 라우팅) |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com) & [NativeWind](https://www.nativewind.dev) | Tailwind `^3.4.17` / NativeWind `^4.2.6` |
 | **Language** | [TypeScript](https://www.typescriptlang.org) | `~6.0.3` |
+| **Font** | [Pretendard GOV](https://github.com/orioncactus/pretendard) (SIL OFL) | `1.3.9` — `assets/fonts/` 굵기별 정적 OTF 4종 |
 | **CI / CD** | GitHub Actions | Lint, TypeCheck, Web Export |
 
 ---
@@ -110,28 +114,42 @@ export function ExampleCard() {
 
 ```
 familyNet/
-├── .github/
-│   └── workflows/
-│       └── ci.yml               # GitHub Actions 자동 빌드 & 테스트 워크플로우
-├── assets/                      # 앱 아이콘, 스플래시 이미지 등 정적 리소스
+├── .github/workflows/ci.yml     # GitHub Actions (타입검사·린트·웹 번들)
+├── assets/                      # 앱 아이콘, 스플래시 이미지
+├── DESIGN.md                    # 디자인 시스템 토큰 (색상·타이포·간격)
 ├── src/
-│   ├── app/                     # Expo Router 기반 화면 (파일 기반 라우팅)
-│   │   ├── _layout.tsx          # 앱 루트 레이아웃 (테마 & global.css 로드)
-│   │   ├── index.tsx            # 메인 홈 화면 (Tailwind 데모 카드 포함)
-│   │   └── explore.tsx          # 탐색 탭 화면
-│   ├── components/              # 재사용 가능한 UI 컴포넌트
-│   ├── constants/               # 테마, 색상 및 레이아웃 상수
-│   ├── hooks/                   # 커스텀 React 훅
-│   └── global.css               # Tailwind CSS 지시어 (@tailwind base, components, utilities)
-├── babel.config.js              # NativeWind JSX 변환 Babel 설정
-├── eslint.config.js             # ESLint Flat Config
-├── metro.config.js              # withNativeWind CSS 번들러 설정
-├── nativewind-env.d.ts          # NativeWind & CSS 모듈 타입 선언
-├── tailwind.config.js           # Tailwind CSS 설정 및 content 경로
-├── start.sh / start-web.sh      # macOS/Linux 실행 스크립트
-├── start.command                # macOS Finder 더블 클릭 실행 파일
-├── start.bat / start-web.bat    # Windows 배치 실행 파일
-└── start.ps1                    # Windows PowerShell 실행 스크립트
+│   ├── app/                     # Expo Router 화면 (파일 기반 라우팅)
+│   │   ├── _layout.tsx          # 루트 Stack + 전역 스토어 Provider
+│   │   ├── (tabs)/              # 하단 탭: 홈 · 스마트패스 · 가족상담 · 다문화·마이
+│   │   ├── programs.tsx         # 프로그램 목록 (검색·필터)
+│   │   ├── program/[id].tsx     # 프로그램 상세 · 신청/대기/취소
+│   │   ├── reserve.tsx          # 공동육아나눔터 예약 (공간·날짜·시간대)
+│   │   ├── toys.tsx             # 장난감 도서관 전체 교구 · 대여
+│   │   ├── alerts.tsx           # 알림함 · 관심 키워드 · 푸시 설정
+│   │   ├── center-select.tsx    # 우리동네 센터 선택 (거리순·즐겨찾기)
+│   │   └── qr/[id].tsx          # QR 스마트패스 전체화면 (체크인 시연)
+│   ├── components/
+│   │   ├── ui/                  # Button · Card · Badge · Screen · Sheet · Segmented 등
+│   │   ├── icon.tsx             # 의존성 없는 View 도형 아이콘 세트 (34종)
+│   │   ├── app-header.tsx       # 공통 헤더 (가족e음·센터 선택·알림·프로필)
+│   │   ├── qr-code.tsx / barcode.tsx  # 시연용 QR·바코드 렌더러
+│   │   ├── avatar.tsx           # 이니셜 아바타 (외부 이미지 없음)
+│   │   ├── institution-footer.tsx     # 공공기관 푸터
+│   │   ├── tab-bar.tsx          # 커스텀 하단 탭바
+│   │   ├── program-card.tsx / center-card.tsx
+│   ├── features/pass/           # 내 패스 · 공간 예약 · 장난감 대여 화면 로직
+│   ├── store/app-store.tsx      # 전역 상태 (센터·관심키워드·신청·패스·알림)
+│   ├── services/familynet.ts    # 데이터 접근 레이어 (목업 → 실 API 교체 지점)
+│   ├── mocks/data.ts            # 시연용 센터·프로그램·공간·장난감·알림 데이터
+│   ├── types/domain.ts          # 도메인 타입 (API 계약)
+│   ├── utils/format.ts          # 날짜·요금·거리·상태 표기 유틸
+│   ├── constants/design.ts      # DESIGN.md 토큰의 TS 미러 (그림자·최대폭 등)
+├── assets/fonts/                # Pretendard GOV Regular·Medium·SemiBold·Bold (+ OFL 라이선스)
+│   └── global.css               # Tailwind 지시어 + 웹 기본 서체
+├── tailwind.config.js           # DESIGN.md 색상·타이포·라운드·간격 토큰
+├── app.json                     # 앱 이름 '패밀리넷', 스플래시 #10315C
+└── start.* / start-web.*        # OS별 원클릭 실행 스크립트
+```
 ```
 
 ---
@@ -146,6 +164,33 @@ familyNet/
 ---
 
 ## 📅 작업 내역 (Changelog)
+
+### 2026-09-08 (3차) — 서체 Pretendard GOV 전면 적용
+- **Pretendard GOV 1.3.9** 굵기별 정적 OTF(Regular·Medium·SemiBold·Bold)를 `assets/fonts/`에 추가하고 루트 레이아웃에서 `expo-font`의 `useFonts`로 로드 (iOS·Android·웹 공통, 웹은 정적 렌더링을 막지 않도록 font-swap)
+- **Tailwind 플러그인**으로 모든 타입 스케일 클래스(`text-body-md` 등)에 Regular 패밀리를, `font-medium/semibold/bold` 클래스에 해당 굵기 파일 패밀리를 주입 → 화면 코드 수정 없이 전체 텍스트에 적용. 굵기 파일을 직접 쓰므로 `fontWeight`는 400으로 고정해 합성 볼드 중복을 방지
+- 웹 빌드에서 4개 폰트 로드 및 제목 요소 계산값(`PretendardGOV-Bold`) 확인
+
+### 2026-09-08 (2차) — 목업 기반 디자인 개편
+- **탭 구조 재편**: 홈 · 스마트패스 · 가족상담 · 다문화·마이 4탭 (프로그램·알림·예약·장난감은 스택 화면으로 이동), 전 탭 공통 헤더(가족e음·공공인증·센터 선택·알림·프로필) 도입
+- **홈**: 기관 인증 배너, 디지털 가족패스 히어로(바코드·QR 체크인), 마감임박 티커, 주요 원스톱 서비스 2×2(실시간 여석·재고), 시즌 캠페인 배너, 맞춤 지원사업 필터, 가족상담전화 배너, 기관 푸터
+- **스마트패스**: QR+바코드 통합 패스 카드(인증 유효시간 카운트다운·갱신·밝기 토글·원터치 출석 체크), 오늘 이용 예약(예약 변경·길찾기), 장난감 대여 현황(연장 신청·실시간 보유·바로/알림 예약), 우리동네 육아 품앗이(참여 신청·모임 개설), 안내데스크
+- **가족상담(신규, 제안서 04)**: 안심상담 히어로·3대 보장, 고민 분야 필터, 공인 상담사 카드(평점·방식·오늘 가능·예약 신청), 우리 가족 마음 날씨(감정 다이어리 → AI 힐링 추천), 24시간 핫라인·비밀 채팅상담
+- **다문화·마이(신규, 제안서 03)**: 다누리 8개 언어 선택, 프로필·이지 모드(큰 글씨), 다누리 콜센터 1577-1366, 나의 센터 활동, 진행 중 맞춤 서비스(언어발달·한국어교실 진도), 자조모임·체류비자 가이드, 마이 서랍, KIHF 푸터
+- **컴포넌트/데이터**: 아이콘 19종 추가, 바코드·아바타·푸터 컴포넌트, 상담사·품앗이·다문화 서비스·언어·캠페인 목업, 스토어에 언어·이지모드·상담신청·감정·모임참여 상태 추가
+- **검증**: `tsc`·`expo lint` 통과, 웹 export 정적 라우트 17개, 헤드리스 Chrome으로 전 탭 스크린샷 확인
+
+### 2026-09-08
+- **패밀리넷 앱 1차 구현 (제안서 01 통합 알리미 + 02 스마트패스 범위)**
+  - 하단 5탭 구성: 홈 · 프로그램 · 스마트패스 · 알림 · 마이 (`expo-router/js-tabs` + 커스텀 탭바)
+  - 홈: GPS(목업) 기반 우리동네 센터 자동 매칭, 즐겨찾기, 빠른 메뉴, 관심 키워드 추천, 마감 임박 목록
+  - 프로그램: 검색·카테고리 필터·모집중/우리동네 토글, 상세 화면에서 신청/대기/취소 (확인 시트)
+  - 스마트패스: 내 패스 목록, 공간 예약(공간·날짜·시간대 선택), 장난감 대여 → QR 패스 자동 발급, 전체화면 QR + 체크인 시연
+  - 알림: 푸시 on/off, 관심 키워드 설정, 알림함(읽음 처리·딥링크)
+  - 마이: 신청 내역, 즐겨찾기 센터, 푸시·생체인증 설정
+- **디자인 시스템 적용**: `DESIGN.md` 토큰을 `tailwind.config.js` 와 `src/constants/design.ts` 로 이관, 앱 이름·스플래시·라이트 모드 고정
+- **아키텍처**: 도메인 타입 → 목업 데이터 → 서비스 레이어 → 전역 스토어(Context) → 화면 순으로 분리해 실 API 교체 지점을 `services/familynet.ts` 하나로 한정
+- **품질 검증**: `tsc`·`expo lint` 통과, `expo export --platform web` 정적 라우트 15개 빌드 성공, 헤드리스 Chrome 스크린샷으로 주요 화면 확인
+- **스타터 코드 정리**: Expo 템플릿 화면·컴포넌트 제거, `._*` AppleDouble 파일 정리
 
 ### 2026-09-07
 - **프로젝트 초기 환경 구축**: Expo SDK 57 및 React Native(0.86.3), React 19 기반 모바일 & 웹 프로젝트 생성
