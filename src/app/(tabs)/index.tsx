@@ -192,7 +192,7 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
-        <View className="mt-sm flex-row items-center justify-between">
+        <View className="mt-sm flex-row flex-wrap items-center justify-between gap-x-md gap-y-xxs">
           <View className="flex-row items-center gap-xxs">
             <Icon name="verified" size={14} color="#65D19F" filled />
             <Text className="text-label-sm text-brand-fixed">

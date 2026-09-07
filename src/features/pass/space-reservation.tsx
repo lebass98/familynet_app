@@ -91,7 +91,7 @@ export function SpaceReservation() {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 8, paddingVertical: 8 }}>
+          contentContainerStyle={{ gap: 14, paddingVertical: 14 }}>
           {DAYS.map((day, index) => {
             const selected = day === date;
             const weekday = WEEKDAYS[new Date(`${day}T00:00:00`).getDay()];

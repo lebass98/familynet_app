@@ -37,9 +37,9 @@ export default function CounselingScreen() {
   const waiting = 12 + counselingRequests.length;
 
   const guarantees: { icon: IconName; title: string; sub: string; color: string }[] = [
-    { icon: 'verified', title: '전액 무료 지원', sub: '국비 전액부담', color: '#FFF3EC' },
-    { icon: 'video', title: '대면·비대면 택1', sub: '화상/채팅/방문', color: '#8BF8C3' },
-    { icon: 'shield', title: '암호화 철저보호', sub: '공공보안 인증', color: '#EBF2FA' },
+    { icon: 'verified', title: '전액 무료', sub: '국비 전액부담', color: '#FFF3EC' },
+    { icon: 'video', title: '대면·비대면', sub: '화상/채팅/방문', color: '#8BF8C3' },
+    { icon: 'shield', title: '암호화 보호', sub: '공공보안 인증', color: '#EBF2FA' },
   ];
 
   return (
@@ -62,14 +62,19 @@ export default function CounselingScreen() {
         <Text className="mb-md mt-xs text-body-sm text-brand-soft">
           {selectedCenter?.name ?? '가족센터'} 전문상담사가 따뜻하고 안전하게 함께합니다.
         </Text>
-        <View className="flex-row gap-xs">
+        <View className="flex-row gap-[10px]">
           {guarantees.map((g) => (
-            <View key={g.title} className="flex-1 items-center rounded bg-white/10 p-xs">
-              <Icon name={g.icon} size={20} color={g.color} />
-              <Text className="mt-xxs text-center text-label-sm font-semibold" style={{ color: g.color }}>
+            <View key={g.title} className="flex-1 items-center rounded bg-white/10 px-[6px] py-sm">
+              <Icon name={g.icon} size={22} color={g.color} />
+              <Text
+                numberOfLines={1}
+                className="mt-xxs text-center text-label-sm font-semibold"
+                style={{ color: g.color }}>
                 {g.title}
               </Text>
-              <Text className="text-label-sm text-ice/80">{g.sub}</Text>
+              <Text numberOfLines={1} className="text-center text-label-sm text-ice/80">
+                {g.sub}
+              </Text>
             </View>
           ))}
         </View>
@@ -81,7 +86,7 @@ export default function CounselingScreen() {
           <Text className="text-title-lg font-semibold text-brand-deep">고민 맞춤 분야</Text>
           <Text className="text-label-sm text-muted">총 {waiting}명 대기중</Text>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 14 }}>
           <Pressable
             accessibilityRole="button"
             accessibilityState={{ selected: field === 'all' }}

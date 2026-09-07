@@ -165,6 +165,10 @@ familyNet/
 
 ## 📅 작업 내역 (Changelog)
 
+### 2026-09-08 (5차) — 여백 2배 확대
+- 여백 토큰을 약 2배로 상향(xxs 8 · xs 14 · sm 20 · md 28 · lg 44 · xl 60 · 2xl 88 · 3xl 120)해 화면 가장자리·카드 내부·섹션 간격을 넉넉하게 조정, 플로팅 탭바 하단 여백 20px
+- 좁은 화면에서 겹치던 홈 히어로 하단 문구를 줄바꿈 허용으로, 상담 히어로 3열 보장 타일은 문구·패딩을 축약해 한 줄 유지
+
 ### 2026-09-08 (4차) — 최소 16px 타이포 + 애플 글래스모피즘
 - **타이포 스케일 상향(최소 16px)**: label-sm 16 · label-md 17 · body-sm 16 · body-md 17 · body-lg 18 · title-lg 20 · headline-md 24 · headline-xl 28 · display-lg 34. 배지·칩·버튼·탭 라벨을 그에 맞춰 44~56px 터치 높이로 확대
 - **글래스모피즘**: `components/ui/glass.tsx` 신설 — `GlassBackdrop`(iOS 26+ `expo-glass-effect` 리퀴드 글래스 / 그 외 반투명+헤어라인 / 웹 `backdrop-filter` 블러), `AmbientBackground`(화면 뒤 색 번짐). 카드·헤더·상세 헤더·확인 시트·플로팅 필 탭바를 글래스 표면으로 교체하고 라운드를 한 단계 확대(14~28px)

@@ -80,7 +80,7 @@ export default function GlobalScreen() {
             <Icon name="chevron-right" size={12} color={Palette.accent} />
           </Pressable>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingBottom: 4 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 14, paddingBottom: 8 }}>
           {LANGUAGES.map((l) => {
             const selected = l.code === language;
             return (
