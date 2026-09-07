@@ -3,9 +3,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppHeader } from '@/components/app-header';
 import { Icon } from '@/components/icon';
-import { MaxContentWidth, Palette, TabBarHeight } from '@/constants/design';
+import { AmbientBackground, GlassBackdrop } from '@/components/ui/glass';
+import { MaxContentWidth, Palette, TabBarHeight, TabBarOffset } from '@/constants/design';
 
-/** 탭 화면 공통 컨테이너 — 배경/세이프에어리어/최대 폭을 통일합니다. */
+/** 탭 화면 공통 컨테이너 — 앰비언트 배경 / 세이프에어리어 / 최대 폭을 통일합니다. */
 export function Screen({
   children,
   scroll = true,
@@ -35,29 +36,32 @@ export function Screen({
   );
 
   return (
-    <SafeAreaView edges={['top']} className={`flex-1 bg-ice ${className}`}>
-      {header ? <AppHeader /> : null}
-      {topBar}
-      {scroll ? (
-        <ScrollView
-          className="flex-1"
-          contentContainerStyle={{ paddingBottom: TabBarHeight + 32 }}
-          showsVerticalScrollIndicator={false}
-          {...rest}>
-          <View
-            className={`w-full self-center ${contentClassName}`}
-            style={{ maxWidth: MaxContentWidth }}>
-            {children}
-          </View>
-        </ScrollView>
-      ) : (
-        inner
-      )}
-    </SafeAreaView>
+    <View className={`flex-1 bg-[#EEF3FA] ${className}`}>
+      <AmbientBackground />
+      <SafeAreaView edges={['top']} className="flex-1">
+        {header ? <AppHeader /> : null}
+        {topBar}
+        {scroll ? (
+          <ScrollView
+            className="flex-1"
+            contentContainerStyle={{ paddingBottom: TabBarHeight + TabBarOffset + 40 }}
+            showsVerticalScrollIndicator={false}
+            {...rest}>
+            <View
+              className={`w-full self-center ${contentClassName}`}
+              style={{ maxWidth: MaxContentWidth }}>
+              {children}
+            </View>
+          </ScrollView>
+        ) : (
+          inner
+        )}
+      </SafeAreaView>
+    </View>
   );
 }
 
-/** 상세 화면용 헤더 (뒤로가기 + 제목) */
+/** 상세 화면용 글래스 헤더 (뒤로가기 + 제목) */
 export function DetailHeader({
   title,
   onBack,
@@ -68,18 +72,23 @@ export function DetailHeader({
   right?: React.ReactNode;
 }) {
   return (
-    <View className="h-[56px] flex-row items-center gap-xs border-b border-line bg-canvas px-xs">
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel="뒤로 가기"
-        onPress={onBack}
-        className="h-[44px] w-[44px] items-center justify-center active:opacity-60">
-        <Icon name="chevron-left" size={22} color={Palette.ink} />
-      </Pressable>
-      <Text numberOfLines={1} className="flex-1 text-title-lg font-semibold text-ink">
-        {title}
-      </Text>
-      {right}
+    <View className="overflow-hidden">
+      <GlassBackdrop tone="strong" radius={0} />
+      <View
+        className="h-[64px] w-full flex-row items-center gap-xs self-center px-xs"
+        style={{ maxWidth: MaxContentWidth }}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="뒤로 가기"
+          onPress={onBack}
+          className="h-[44px] w-[44px] items-center justify-center rounded-full active:bg-brand/10">
+          <Icon name="chevron-left" size={22} color={Palette.ink} />
+        </Pressable>
+        <Text numberOfLines={1} className="flex-1 text-title-lg font-semibold text-ink">
+          {title}
+        </Text>
+        {right}
+      </View>
     </View>
   );
 }
@@ -103,7 +112,7 @@ export function SectionHeader({
         <Pressable
           accessibilityRole="button"
           onPress={onAction}
-          className="h-[32px] flex-row items-center gap-xxs active:opacity-60">
+          className="h-[36px] flex-row items-center gap-xxs active:opacity-60">
           <Text className="text-label-md font-semibold text-brand">{actionLabel}</Text>
           <Icon name="chevron-right" size={16} color={Palette.brand} />
         </Pressable>

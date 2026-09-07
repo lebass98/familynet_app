@@ -75,7 +75,7 @@ export function SpaceReservation() {
           ))}
         </View>
         {space ? (
-          <Card className="mt-xs bg-canvas">
+          <Card className="mt-xs bg-white/75">
             <View className="flex-row items-center gap-xs">
               <Badge label={space.kind === 'care-share' ? '공동육아나눔터' : '장난감도서관'} tone="brand" />
               <Text className="text-label-sm text-subtle">정원 {space.capacity}명</Text>
@@ -104,7 +104,7 @@ export function SpaceReservation() {
                 accessibilityLabel={`${formatShortDate(day)} ${weekday}요일`}
                 onPress={() => setDate(day)}
                 className={`h-[64px] w-[52px] items-center justify-center rounded-md border ${
-                  selected ? 'border-brand bg-brand' : 'border-line bg-canvas'
+                  selected ? 'border-brand bg-brand' : 'border-white/70 bg-white/75'
                 }`}>
                 <Text
                   className={`text-label-sm ${
@@ -172,7 +172,7 @@ export function SpaceReservation() {
           setPendingSlot(null);
           if (pass) router.push(`/qr/${pass.id}`);
         }}>
-        <Card className="bg-ice">
+        <Card className="bg-brand/5">
           <Text className="text-body-md font-semibold text-ink">{space?.name}</Text>
           <Text className="mt-xxs text-label-sm text-muted">
             {pendingSlot ? `${pendingSlot.date} ${pendingSlot.start} - ${pendingSlot.end}` : ''}

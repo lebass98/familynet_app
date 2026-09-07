@@ -13,7 +13,7 @@ export function InstitutionFooter() {
         <Text className="text-label-md font-medium text-brand-deep">
           {selectedCenter?.name ?? '가족센터'}
         </Text>
-        <View className="ml-auto rounded bg-canvas px-xs py-[2px]">
+        <View className="ml-auto rounded bg-white/75 px-xs py-[2px]">
           <Text className="text-label-sm font-semibold text-brand-deep">공공기관 웹접근성 인증</Text>
         </View>
       </View>

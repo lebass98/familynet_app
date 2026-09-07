@@ -15,7 +15,7 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <View className="items-center gap-xs rounded-md border border-dashed border-line bg-canvas px-md py-xl">
+    <View className="items-center gap-xs rounded-md border border-dashed border-brand/20 bg-white/75 px-md py-xl">
       <Icon name={icon} size={28} color={Palette.subtle} />
       <Text className="text-body-lg font-semibold text-ink">{title}</Text>
       {description ? (

@@ -70,7 +70,7 @@ export default function AlertsScreen() {
           />
         </View>
 
-        <View className="mt-sm border-t border-line pt-sm">
+        <View className="mt-sm border-t border-brand/10 pt-sm">
           <Text className="text-label-md font-semibold text-muted">관심 키워드</Text>
           <View className="mt-xs flex-row flex-wrap gap-xxs">
             {CATEGORIES.map((category) => (
@@ -100,7 +100,7 @@ export default function AlertsScreen() {
                     if (notification.href) router.push(notification.href);
                   }}>
                   <View className="flex-row items-start gap-sm">
-                    <View className="h-[40px] w-[40px] items-center justify-center rounded-full bg-ice">
+                    <View className="h-[40px] w-[40px] items-center justify-center rounded-full bg-brand/5">
                       <Icon name={meta.icon} size={20} color={Palette.brand} />
                     </View>
                     <View className="flex-1">

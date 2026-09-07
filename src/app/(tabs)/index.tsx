@@ -94,7 +94,7 @@ export default function HomeScreen() {
     },
     {
       icon: 'chat',
-      iconBg: 'bg-ice',
+      iconBg: 'bg-brand/5',
       iconColor: '#2E194D',
       badge: { label: '비밀보장', bg: 'bg-brand-soft', text: 'text-brand' },
       title: '1:1 가족상담실',
@@ -123,7 +123,7 @@ export default function HomeScreen() {
       {/* 기관 인증 배너 */}
       <View className="mt-xs flex-row items-center justify-between gap-xs rounded-md bg-brand-soft/70 p-sm">
         <View className="flex-1 flex-row items-center gap-xs">
-          <View className="h-[32px] w-[32px] items-center justify-center rounded-full bg-canvas">
+          <View className="h-[32px] w-[32px] items-center justify-center rounded-full bg-white/75">
             <Icon name="heart" size={18} color={Palette.brand} filled />
           </View>
           <View className="flex-1">
@@ -144,7 +144,7 @@ export default function HomeScreen() {
       {/* 히어로: 디지털 가족패스 */}
       <View className="mt-sm overflow-hidden rounded-lg bg-brand p-lg">
         <View className="absolute -bottom-[32px] -right-[32px] h-[140px] w-[140px] rounded-full bg-white/10" />
-        <View className="absolute right-[16px] top-[16px] h-[80px] w-[80px] rounded-full bg-accent/20" />
+        <View className="absolute -top-[40px] left-[120px] h-[120px] w-[120px] rounded-full bg-accent/15" />
 
         <View className="flex-row items-start justify-between">
           <View>
@@ -169,7 +169,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <View className="mt-md flex-row items-center justify-between rounded bg-canvas p-sm">
+        <View className="mt-md flex-row items-center justify-between rounded bg-white/90 p-sm">
           <View className="flex-1 gap-xxs">
             <View className="flex-row items-center gap-xxs">
               <Text className="text-label-sm text-muted">센터 간편 출입코드</Text>
@@ -237,7 +237,7 @@ export default function HomeScreen() {
               key={tile.title}
               accessibilityRole="button"
               onPress={() => router.push(tile.href)}
-              className="w-[48.5%] justify-between gap-sm rounded-md border border-line bg-canvas p-md active:bg-ice">
+              className="w-[48.5%] justify-between gap-sm rounded-md border border-white/70 bg-white/75 p-md active:bg-brand/5">
               <View className="flex-row items-start justify-between">
                 <View className={`h-[40px] w-[40px] items-center justify-center rounded ${tile.iconBg}`}>
                   <Icon name={tile.icon} size={22} color={tile.iconColor} />
@@ -267,7 +267,7 @@ export default function HomeScreen() {
       <Pressable
         accessibilityRole="button"
         onPress={() => router.push(`/program/${CAMPAIGN.programId}`)}
-        className="mt-lg flex-row items-center justify-between gap-sm rounded-md bg-[#DAE3F2] p-md active:opacity-80">
+        className="mt-lg flex-row items-center justify-between gap-sm rounded-md bg-white/55 p-md active:opacity-80">
         <View className="flex-1 gap-xxs">
           <View className="flex-row items-center gap-xxs">
             <View className="rounded-full bg-brand px-xs py-[2px]">

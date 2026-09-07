@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AmbientBackground } from '@/components/ui/glass';
+
 import { CenterCard } from '@/components/center-card';
 import { Icon } from '@/components/icon';
 import { Button } from '@/components/ui/button';
@@ -40,8 +42,9 @@ export default function CenterSelectScreen() {
   };
 
   return (
-    <SafeAreaView edges={['top']} className="flex-1 bg-ice">
-      <View className="h-[56px] flex-row items-center justify-between border-b border-line bg-canvas px-md">
+    <SafeAreaView edges={['top']} className="flex-1 bg-[#EEF3FA]">
+      <AmbientBackground />
+      <View className="h-[56px] flex-row items-center justify-between border-b border-brand/10 bg-white/75 px-md">
         <Text className="text-title-lg font-semibold text-ink">센터 선택</Text>
         <Pressable
           accessibilityRole="button"
@@ -54,7 +57,7 @@ export default function CenterSelectScreen() {
 
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="w-full self-center px-md pt-md" style={{ maxWidth: MaxContentWidth }}>
-          <View className="h-[44px] flex-row items-center gap-xs rounded border border-line bg-canvas px-sm">
+          <View className="h-[44px] flex-row items-center gap-xs rounded border border-white/70 bg-white/75 px-sm">
             <Icon name="search" size={18} color={Palette.subtle} />
             <TextInput
               value={keyword}

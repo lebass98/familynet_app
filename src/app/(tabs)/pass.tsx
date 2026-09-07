@@ -102,7 +102,7 @@ export default function SmartPassScreen() {
       </View>
 
       {/* 스마트패스 메인 카드 */}
-      <View className={`mt-xs rounded-lg border border-line p-md ${bright ? 'bg-canvas' : 'bg-brand-soft/60'}`}>
+      <View className={`mt-xs rounded-lg border border-white/70 p-md ${bright ? 'bg-white' : 'bg-white/45'}`}>
         <View className="flex-row items-start justify-between">
           <View className="flex-1">
             <View className="flex-row items-center gap-xs">
@@ -119,7 +119,7 @@ export default function SmartPassScreen() {
             accessibilityState={{ selected: bright }}
             onPress={() => setBright((v) => !v)}
             className={`flex-row items-center gap-xxs rounded px-xs py-xxs active:opacity-70 ${
-              bright ? 'bg-accent' : 'bg-[#E0E9F8]'
+              bright ? 'bg-accent' : 'bg-brand/10'
             }`}>
             <Icon name="brightness" size={16} color={bright ? '#FFFFFF' : Palette.brand} />
             <Text className={`text-label-sm font-semibold ${bright ? 'text-white' : 'text-brand'}`}>
@@ -128,13 +128,13 @@ export default function SmartPassScreen() {
           </Pressable>
         </View>
 
-        <View className="mt-md items-center overflow-hidden rounded-md bg-canvas p-md">
+        <View className="mt-md items-center overflow-hidden rounded-md bg-white p-md">
           <View className="absolute -right-[32px] -top-[32px] h-[96px] w-[96px] rounded-full bg-brand/5" />
           <View className="relative">
             <QrCode code={passCode} size={144} />
             <View className="absolute inset-0 items-center justify-center">
               <View className="h-[28px] w-[28px] items-center justify-center rounded-full bg-accent">
-                <View className="h-[12px] w-[12px] rounded-full bg-canvas" />
+                <View className="h-[12px] w-[12px] rounded-full bg-white/75" />
               </View>
             </View>
           </View>
@@ -144,7 +144,7 @@ export default function SmartPassScreen() {
               {barcodeDigits(passCode)}
             </Text>
           </View>
-          <View className="mt-sm flex-row items-center gap-xs rounded-full bg-ice px-sm py-xxs">
+          <View className="mt-sm flex-row items-center gap-xs rounded-full bg-brand/5 px-sm py-xxs">
             <Icon name="clock" size={16} color={Palette.accent} />
             <Text className="text-label-sm text-muted">인증 유효시간</Text>
             <Text className="text-label-md font-bold text-accent">{formatTimer(timer)}</Text>
@@ -197,7 +197,7 @@ export default function SmartPassScreen() {
         </View>
         {spacePass ? (
           <>
-            <View className="mt-xs flex-row gap-sm rounded bg-ice p-sm">
+            <View className="mt-xs flex-row gap-sm rounded bg-brand/5 p-sm">
               <View className="h-[48px] w-[48px] items-center justify-center rounded bg-brand-soft">
                 <Icon name="people" size={24} color={Palette.brand} />
               </View>
@@ -295,7 +295,7 @@ export default function SmartPassScreen() {
                   accessibilityRole="button"
                   disabled={extended}
                   onPress={() => setExtended(true)}
-                  className={`rounded px-sm py-xxs active:opacity-70 ${extended ? 'bg-ice' : 'bg-brand-soft'}`}>
+                  className={`rounded px-sm py-xxs active:opacity-70 ${extended ? 'bg-brand/5' : 'bg-brand-soft'}`}>
                   <Text className={`text-label-md font-semibold ${extended ? 'text-muted' : 'text-brand'}`}>
                     {extended ? '연장 신청 완료 (+7일)' : '대여 연장 신청'}
                   </Text>
@@ -320,9 +320,9 @@ export default function SmartPassScreen() {
                 const rentable = toy.available > 0 && toy.condition === 'available';
                 const notify = notifyToyIds.includes(toy.id);
                 return (
-                  <View key={toy.id} className="flex-row items-center justify-between rounded bg-ice p-xs">
+                  <View key={toy.id} className="flex-row items-center justify-between rounded bg-brand/5 p-xs">
                     <View className="flex-1 flex-row items-center gap-xs">
-                      <View className="h-[40px] w-[40px] items-center justify-center rounded bg-canvas">
+                      <View className="h-[40px] w-[40px] items-center justify-center rounded bg-white/75">
                         <Icon name="toy" size={20} color={rentable ? Palette.accent : Palette.subtle} />
                       </View>
                       <View className="flex-1">
@@ -345,7 +345,7 @@ export default function SmartPassScreen() {
                             )
                       }
                       className={`rounded px-xs py-xxs active:opacity-70 ${
-                        rentable ? 'bg-success-soft' : notify ? 'bg-brand' : 'bg-[#E0E9F8]'
+                        rentable ? 'bg-success-soft' : notify ? 'bg-brand' : 'bg-brand/10'
                       }`}>
                       <Text
                         className={`text-label-sm font-semibold ${
@@ -397,7 +397,7 @@ export default function SmartPassScreen() {
                         {group.initials.map((initial, i) => (
                           <View
                             key={initial}
-                            className="h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-canvas bg-[#E0E9F8]"
+                            className="h-[24px] w-[24px] items-center justify-center rounded-full border-2 border-canvas bg-brand/10"
                             style={{ marginLeft: i === 0 ? 0 : -8 }}>
                             <Text className="text-label-sm text-brand">{initial}</Text>
                           </View>
@@ -412,7 +412,7 @@ export default function SmartPassScreen() {
                       disabled={full}
                       onPress={() => toggleGroup(group.id)}
                       className={`rounded px-sm py-xxs active:opacity-70 ${
-                        joined ? 'bg-success-soft' : full ? 'bg-ice' : 'bg-brand'
+                        joined ? 'bg-success-soft' : full ? 'bg-brand/5' : 'bg-brand'
                       }`}>
                       <Text
                         className={`text-label-sm font-semibold ${
@@ -433,7 +433,7 @@ export default function SmartPassScreen() {
 
       {/* 안내데스크 */}
       {selectedCenter ? (
-        <View className="mt-lg flex-row items-center justify-between rounded-md bg-ice p-md">
+        <View className="mt-lg flex-row items-center justify-between rounded-md bg-brand/5 p-md">
           <View className="flex-1 flex-row items-center gap-sm">
             <View className="h-[40px] w-[40px] items-center justify-center rounded-full bg-brand-soft">
               <Icon name="phone" size={18} color={Palette.brand} />
@@ -466,7 +466,7 @@ export default function SmartPassScreen() {
           setPendingToy(null);
           if (pass) router.push(`/qr/${pass.id}`);
         }}>
-        <Card className="bg-ice">
+        <Card className="bg-brand/5">
           <Text className="text-body-md font-semibold text-ink">{pendingToy?.name}</Text>
           <Text className="mt-xxs text-label-sm text-muted">
             대여 기간 {pendingToy?.rentalDays}일 · {selectedCenter?.name}

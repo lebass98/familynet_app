@@ -1,5 +1,6 @@
 import { Pressable, View, type ViewProps } from 'react-native';
 
+import { GlassBackdrop } from '@/components/ui/glass';
 import { ShadowCard } from '@/constants/design';
 
 interface CardProps extends ViewProps {
@@ -8,20 +9,31 @@ interface CardProps extends ViewProps {
   onPress?: () => void;
   /** 상단 4px 강조 바 색상 클래스 (예: bg-accent) */
   accent?: string;
+  /** 글래스 농도 */
+  tone?: 'regular' | 'strong' | 'soft';
 }
 
-/** DESIGN.md Service Cards — 12px 라운드, 1px #DCE3EC 보더, Level 1 그림자 */
-export function Card({ className = '', onPress, accent, children, style, ...rest }: CardProps) {
+const RADIUS = 18;
+
+/** 글래스 카드 — 반투명 표면 + 헤어라인 + 확산 그림자 */
+export function Card({
+  className = '',
+  onPress,
+  accent,
+  tone = 'regular',
+  children,
+  style,
+  ...rest
+}: CardProps) {
   const content = (
     <>
+      <GlassBackdrop tone={tone} radius={RADIUS} />
       {accent ? <View className={`h-[4px] w-full ${accent}`} /> : null}
       <View className={accent ? 'p-md' : ''}>{children}</View>
     </>
   );
 
-  const base = `bg-canvas rounded-md border border-line overflow-hidden ${
-    accent ? '' : 'p-md'
-  } ${className}`;
+  const base = `overflow-hidden rounded-md ${accent ? '' : 'p-md'} ${className}`;
 
   if (onPress) {
     return (

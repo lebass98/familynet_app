@@ -61,7 +61,7 @@ export default function ProgramsScreen() {
       </View>
 
       {/* 검색 */}
-      <View className="h-[44px] flex-row items-center gap-xs rounded border border-line bg-canvas px-sm">
+      <View className="h-[44px] flex-row items-center gap-xs rounded border border-white/70 bg-white/75 px-sm">
         <Icon name="search" size={18} color={Palette.subtle} />
         <TextInput
           value={keyword}
@@ -93,7 +93,7 @@ export default function ProgramsScreen() {
       </View>
 
       {/* 보기 옵션 */}
-      <View className="mt-xs flex-row items-center justify-between rounded-md border border-line bg-canvas px-sm py-xs">
+      <View className="mt-xs flex-row items-center justify-between rounded-md border border-white/70 bg-white/75 px-sm py-xs">
         <View className="flex-row items-center gap-xxs">
           <Text className="text-label-md text-muted">모집중만</Text>
           <Switch

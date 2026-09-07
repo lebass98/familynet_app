@@ -15,16 +15,17 @@ const GOV = {
   700: "PretendardGOV-Bold",
 };
 
+// 접근성 기준: 최소 16px. (공공 서비스 · 시니어 · 다문화 이용자 가독성)
 const TYPE_SCALE = {
-  "display-lg": ["30px", { lineHeight: "40px" }],
-  "headline-xl": ["24px", { lineHeight: "34px" }],
-  "headline-md": ["22px", { lineHeight: "32px" }],
-  "title-lg": ["18px", { lineHeight: "26px" }],
-  "body-lg": ["16px", { lineHeight: "26px" }],
-  "body-md": ["15px", { lineHeight: "24px" }],
-  "body-sm": ["13px", { lineHeight: "20px" }],
-  "label-md": ["14px", { lineHeight: "20px" }],
-  "label-sm": ["12px", { lineHeight: "16px" }],
+  "display-lg": ["34px", { lineHeight: "42px" }],
+  "headline-xl": ["28px", { lineHeight: "36px" }],
+  "headline-md": ["24px", { lineHeight: "32px" }],
+  "title-lg": ["20px", { lineHeight: "28px" }],
+  "body-lg": ["18px", { lineHeight: "28px" }],
+  "body-md": ["17px", { lineHeight: "26px" }],
+  "body-sm": ["16px", { lineHeight: "24px" }],
+  "label-md": ["17px", { lineHeight: "24px" }],
+  "label-sm": ["16px", { lineHeight: "22px" }],
 };
 
 module.exports = {
@@ -58,6 +59,14 @@ module.exports = {
         line: "#DCE3EC",
         ice: "#F4F7FB",
         canvas: "#FFFFFF",
+        // 글래스모피즘 표면 (backdrop-blur 와 함께 사용)
+        glass: {
+          DEFAULT: "rgba(255,255,255,0.62)",
+          strong: "rgba(255,255,255,0.82)",
+          soft: "rgba(255,255,255,0.4)",
+          border: "rgba(255,255,255,0.8)",
+          dark: "rgba(16,49,92,0.45)",
+        },
       },
       fontFamily: {
         sans: [GOV[400]],
@@ -67,12 +76,13 @@ module.exports = {
         "gov-bold": [GOV[700]],
       },
       fontSize: TYPE_SCALE,
+      // Apple 스타일의 연속 곡률 느낌을 위해 라운드를 한 단계 키움
       borderRadius: {
-        sm: "4px",
-        DEFAULT: "8px",
-        md: "12px",
-        lg: "16px",
-        xl: "24px",
+        sm: "10px",
+        DEFAULT: "14px",
+        md: "18px",
+        lg: "22px",
+        xl: "28px",
         full: "9999px",
       },
       spacing: {

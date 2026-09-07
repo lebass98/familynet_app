@@ -102,7 +102,7 @@ export function ToyRental() {
           setPending(null);
           if (pass) router.push(`/qr/${pass.id}`);
         }}>
-        <Card className="bg-ice">
+        <Card className="bg-brand/5">
           <Text className="text-body-md font-semibold text-ink">{pending?.name}</Text>
           <Text className="mt-xxs text-label-sm text-muted">
             대여 기간 {pending?.rentalDays}일 · {selectedCenter?.name}

@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AmbientBackground } from '@/components/ui/glass';
+
 import { Icon } from '@/components/icon';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -36,7 +38,8 @@ export default function ProgramDetailScreen() {
 
   if (!program) {
     return (
-      <SafeAreaView edges={['top']} className="flex-1 bg-ice">
+      <SafeAreaView edges={['top']} className="flex-1 bg-[#EEF3FA]">
+      <AmbientBackground />
         <DetailHeader title="프로그램" onBack={() => router.back()} />
         <View className="flex-1 items-center justify-center px-md">
           <Text className="text-body-lg text-muted">프로그램 정보를 찾을 수 없습니다.</Text>
@@ -59,7 +62,8 @@ export default function ProgramDetailScreen() {
   ];
 
   return (
-    <SafeAreaView edges={['top']} className="flex-1 bg-ice">
+    <SafeAreaView edges={['top']} className="flex-1 bg-[#EEF3FA]">
+      <AmbientBackground />
       <DetailHeader title={center?.name ?? '프로그램'} onBack={() => router.back()} />
 
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
@@ -93,7 +97,7 @@ export default function ProgramDetailScreen() {
             {infoRows.map(([label, value], index) => (
               <View
                 key={label}
-                className={`flex-row gap-sm py-xs ${index === 0 ? '' : 'border-t border-line'}`}>
+                className={`flex-row gap-sm py-xs ${index === 0 ? '' : 'border-t border-brand/10'}`}>
                 <Text className="w-[72px] text-label-md text-subtle">{label}</Text>
                 <Text className="flex-1 text-body-sm text-ink">{value}</Text>
               </View>
@@ -131,7 +135,7 @@ export default function ProgramDetailScreen() {
       </ScrollView>
 
       {/* 하단 고정 CTA */}
-      <View className="border-t border-line bg-canvas px-md py-sm" style={ShadowRaised}>
+      <View className="border-t border-brand/10 bg-white/75 px-md py-sm" style={ShadowRaised}>
         <View className="w-full self-center" style={{ maxWidth: MaxContentWidth }}>
           {closed ? (
             <Button label="접수가 마감되었습니다" disabled onPress={() => {}} size="lg" />
@@ -179,7 +183,7 @@ export default function ProgramDetailScreen() {
           setSheet(null);
           setJustApplied(true);
         }}>
-        <Card className="bg-ice">
+        <Card className="bg-brand/5">
           <Text className="text-body-md font-semibold text-ink">{program.title}</Text>
           <Text className="mt-xxs text-label-sm text-muted">
             {program.schedule} · {formatFee(program.fee)}

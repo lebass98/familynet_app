@@ -129,7 +129,7 @@ familyNet/
 │   │   ├── center-select.tsx    # 우리동네 센터 선택 (거리순·즐겨찾기)
 │   │   └── qr/[id].tsx          # QR 스마트패스 전체화면 (체크인 시연)
 │   ├── components/
-│   │   ├── ui/                  # Button · Card · Badge · Screen · Sheet · Segmented 등
+│   │   ├── ui/                  # Button · Card · Badge · Screen · Sheet · Glass(글래스모피즘) 등
 │   │   ├── icon.tsx             # 의존성 없는 View 도형 아이콘 세트 (34종)
 │   │   ├── app-header.tsx       # 공통 헤더 (가족e음·센터 선택·알림·프로필)
 │   │   ├── qr-code.tsx / barcode.tsx  # 시연용 QR·바코드 렌더러
@@ -164,6 +164,12 @@ familyNet/
 ---
 
 ## 📅 작업 내역 (Changelog)
+
+### 2026-09-08 (4차) — 최소 16px 타이포 + 애플 글래스모피즘
+- **타이포 스케일 상향(최소 16px)**: label-sm 16 · label-md 17 · body-sm 16 · body-md 17 · body-lg 18 · title-lg 20 · headline-md 24 · headline-xl 28 · display-lg 34. 배지·칩·버튼·탭 라벨을 그에 맞춰 44~56px 터치 높이로 확대
+- **글래스모피즘**: `components/ui/glass.tsx` 신설 — `GlassBackdrop`(iOS 26+ `expo-glass-effect` 리퀴드 글래스 / 그 외 반투명+헤어라인 / 웹 `backdrop-filter` 블러), `AmbientBackground`(화면 뒤 색 번짐). 카드·헤더·상세 헤더·확인 시트·플로팅 필 탭바를 글래스 표면으로 교체하고 라운드를 한 단계 확대(14~28px)
+- 화면 내 불투명 패널(`bg-canvas`/`bg-ice`/`border-line`)을 반투명 표면으로 일괄 치환(QR·바코드 영역은 대비를 위해 흰색 유지), 스택 화면에도 앰비언트 배경 적용
+- `expo export --platform ios` 로 네이티브 CSS 컴파일 검증, 웹 스크린샷으로 전 탭 확인
 
 ### 2026-09-08 (3차) — 서체 Pretendard GOV 전면 적용
 - **Pretendard GOV 1.3.9** 굵기별 정적 OTF(Regular·Medium·SemiBold·Bold)를 `assets/fonts/`에 추가하고 루트 레이아웃에서 `expo-font`의 `useFonts`로 로드 (iOS·Android·웹 공통, 웹은 정적 렌더링을 막지 않도록 font-swap)

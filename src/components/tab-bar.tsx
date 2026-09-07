@@ -3,7 +3,8 @@ import { Platform, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Icon, type IconName } from '@/components/icon';
-import { MaxContentWidth, Palette, ShadowRaised, TabBarHeight } from '@/constants/design';
+import { GlassBackdrop } from '@/components/ui/glass';
+import { MaxContentWidth, Palette, ShadowCard, TabBarHeight, TabBarOffset } from '@/constants/design';
 
 const TAB_META: Record<string, { label: string; icon: IconName }> = {
   index: { label: '홈', icon: 'home' },
@@ -12,17 +13,19 @@ const TAB_META: Record<string, { label: string; icon: IconName }> = {
   my: { label: '다문화·마이', icon: 'globe' },
 };
 
-/** 하단 탭 바 — 웹/네이티브 동일 렌더링, 알림 미읽음 배지 포함 */
+/** 플로팅 글래스 탭바 — 콘텐츠 위에 떠 있고 스크롤 내용이 비쳐 보입니다 */
 export function TabBar({ state, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
 
   return (
     <View
-      className="w-full border-t border-line bg-canvas"
-      style={[ShadowRaised, { paddingBottom: insets.bottom }]}>
+      pointerEvents="box-none"
+      className="absolute bottom-0 left-0 right-0 items-center px-md"
+      style={{ paddingBottom: Math.max(insets.bottom, TabBarOffset) }}>
       <View
-        className="w-full flex-row self-center"
-        style={{ height: TabBarHeight, maxWidth: MaxContentWidth }}>
+        className="w-full flex-row overflow-hidden rounded-full"
+        style={[ShadowCard, { height: TabBarHeight, maxWidth: MaxContentWidth }]}>
+        <GlassBackdrop tone="strong" radius={999} />
         {state.routes.map((route, index) => {
           const meta = TAB_META[route.name];
           if (!meta) return null;
@@ -41,12 +44,16 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
                   navigation.navigate(route.name, route.params);
                 }
               }}
-              className="flex-1 items-center justify-center gap-xxs active:opacity-60"
+              className="flex-1 items-center justify-center gap-[2px] active:opacity-60"
               style={Platform.OS === 'web' ? { cursor: 'pointer' } : undefined}>
-              <View>
+              <View
+                className={`h-[34px] w-[56px] items-center justify-center rounded-full ${
+                  focused ? 'bg-brand/12' : ''
+                }`}>
                 <Icon name={meta.icon} size={24} color={color} filled={focused} />
               </View>
               <Text
+                numberOfLines={1}
                 className={`text-label-sm ${focused ? 'font-bold text-brand' : 'font-medium text-subtle'}`}>
                 {meta.label}
               </Text>

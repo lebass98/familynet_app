@@ -69,7 +69,7 @@ export default function CounselingScreen() {
               <Text className="mt-xxs text-center text-label-sm font-semibold" style={{ color: g.color }}>
                 {g.title}
               </Text>
-              <Text className="text-[10px] font-normal text-ice/80">{g.sub}</Text>
+              <Text className="text-label-sm text-ice/80">{g.sub}</Text>
             </View>
           ))}
         </View>
@@ -86,7 +86,7 @@ export default function CounselingScreen() {
             accessibilityRole="button"
             accessibilityState={{ selected: field === 'all' }}
             onPress={() => setField('all')}
-            className={`h-[40px] justify-center rounded-full px-md ${field === 'all' ? 'bg-brand' : 'bg-canvas border border-line'}`}>
+            className={`h-[40px] justify-center rounded-full px-md ${field === 'all' ? 'bg-brand' : 'bg-white/75 border border-white/70'}`}>
             <Text className={`text-label-md font-semibold ${field === 'all' ? 'text-white' : 'text-muted'}`}>
               전체
             </Text>
@@ -100,7 +100,7 @@ export default function CounselingScreen() {
                 accessibilityState={{ selected }}
                 onPress={() => setField(f.id)}
                 className={`h-[40px] flex-row items-center gap-xxs rounded-full px-md ${
-                  selected ? 'bg-brand' : 'border border-line bg-canvas'
+                  selected ? 'bg-brand' : 'border border-white/70 bg-white/75'
                 }`}>
                 <Icon name={f.icon} size={16} color={selected ? '#FFFFFF' : Palette.brand} />
                 <Text className={`text-label-md font-semibold ${selected ? 'text-white' : 'text-muted'}`}>
@@ -132,7 +132,7 @@ export default function CounselingScreen() {
           {counselors.map((c) => {
             const accent = c.availableToday ? 'bg-success' : 'bg-brand';
             return (
-              <View key={c.id} className="overflow-hidden rounded-md border border-line bg-canvas">
+              <View key={c.id} className="overflow-hidden rounded-md border border-white/70 bg-white/75">
                 <View className="flex-row">
                   <View className={`w-[6px] ${accent}`} />
                   <View className="flex-1 p-md">
@@ -163,7 +163,7 @@ export default function CounselingScreen() {
 
                     <View className="mt-sm flex-row flex-wrap gap-xs">
                       {c.modes.map((mode) => (
-                        <View key={mode} className="flex-row items-center gap-xxs rounded bg-ice px-xs py-[3px]">
+                        <View key={mode} className="flex-row items-center gap-xxs rounded bg-brand/5 px-xs py-[3px]">
                           <Icon name={MODE_META[mode].icon} size={14} color={Palette.brand} />
                           <Text className="text-label-sm text-brand">{MODE_META[mode].label}</Text>
                         </View>
@@ -225,9 +225,9 @@ export default function CounselingScreen() {
                 accessibilityState={{ selected }}
                 onPress={() => setEmotion(e.id)}
                 className={`flex-1 items-center gap-xxs rounded p-xs ${
-                  selected ? 'border-2 border-accent bg-accent-soft' : 'border border-line bg-canvas'
+                  selected ? 'border-2 border-accent bg-accent-soft' : 'border border-white/70 bg-white/75'
                 }`}>
-                <Text className="text-[26px]">{e.emoji}</Text>
+                <Text className="text-[30px]">{e.emoji}</Text>
                 <Text
                   className={`text-center text-label-sm ${selected ? 'font-bold text-accent' : 'font-semibold text-brand-deep'}`}>
                   {e.label}
@@ -236,7 +236,7 @@ export default function CounselingScreen() {
             );
           })}
         </View>
-        <View className="mt-md flex-row items-center justify-between rounded bg-canvas p-sm">
+        <View className="mt-md flex-row items-center justify-between rounded bg-white/75 p-sm">
           <View className="flex-1 flex-row items-center gap-sm">
             <View className="h-[40px] w-[40px] items-center justify-center rounded-full bg-accent-soft">
               <Icon name="heart" size={20} color={Palette.accent} filled />
@@ -251,7 +251,7 @@ export default function CounselingScreen() {
               </Text>
             </View>
           </View>
-          <View className="h-[32px] w-[32px] items-center justify-center rounded-full bg-ice">
+          <View className="h-[32px] w-[32px] items-center justify-center rounded-full bg-brand/5">
             <Icon name="chevron-right" size={16} color={Palette.brand} />
           </View>
         </View>
@@ -304,7 +304,7 @@ export default function CounselingScreen() {
           setBooking(null);
         }}>
         {booking ? (
-          <Card className="bg-ice">
+          <Card className="bg-brand/5">
             <View className="flex-row items-center gap-sm">
               <Avatar name={booking.name} size={40} />
               <View className="flex-1">

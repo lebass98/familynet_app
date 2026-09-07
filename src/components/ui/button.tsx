@@ -18,8 +18,8 @@ interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> {
 const CONTAINER: Record<Variant, string> = {
   primary: 'bg-brand',
   accent: 'bg-accent',
-  outline: 'bg-canvas border border-[#B0C2D8]',
-  ghost: 'bg-brand-soft',
+  outline: 'bg-glass-strong border border-[#B0C2D8]',
+  ghost: 'bg-brand/10',
 };
 
 const LABEL: Record<Variant, string> = {
@@ -29,7 +29,7 @@ const LABEL: Record<Variant, string> = {
   ghost: 'text-brand',
 };
 
-/** DESIGN.md Buttons — 최소 44px 터치 높이, 8px 라운드, 600 웨이트 */
+/** 필 형태 버튼 — 최소 52px 터치 높이, 17px 세미볼드 */
 export function Button({
   label,
   variant = 'primary',
@@ -46,8 +46,8 @@ export function Button({
       accessibilityRole="button"
       accessibilityState={{ disabled: !!isDisabled, busy: loading }}
       disabled={isDisabled}
-      className={`flex-row items-center justify-center gap-xs rounded ${CONTAINER[variant]} ${
-        size === 'lg' ? 'h-[52px] px-lg' : 'h-[44px] px-md'
+      className={`flex-row items-center justify-center gap-xs rounded-full ${CONTAINER[variant]} ${
+        size === 'lg' ? 'h-[56px] px-lg' : 'h-[52px] px-md'
       } ${isDisabled ? 'opacity-40' : 'active:opacity-80'} ${className}`}
       {...rest}>
       {loading ? (

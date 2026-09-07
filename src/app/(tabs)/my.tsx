@@ -89,10 +89,10 @@ export default function GlobalScreen() {
                 accessibilityRole="button"
                 accessibilityState={{ selected }}
                 onPress={() => setLanguage(l.code)}
-                className={`h-[34px] flex-row items-center gap-xxs rounded-full px-sm ${
-                  selected ? 'bg-brand' : 'bg-canvas border border-line'
+                className={`h-[44px] flex-row items-center gap-xxs rounded-full px-md ${
+                  selected ? 'bg-brand' : 'bg-white/75 border border-white/70'
                 }`}>
-                <Text className="text-[14px]">{l.flag}</Text>
+                <Text className="text-body-md">{l.flag}</Text>
                 <Text className={`text-label-sm font-semibold ${selected ? 'text-white' : 'text-muted'}`}>
                   {l.label}
                 </Text>
@@ -126,7 +126,7 @@ export default function GlobalScreen() {
             accessibilityRole="button"
             accessibilityLabel="생체인증 설정"
             onPress={() => setBiometricEnabled(!biometricEnabled)}
-            className={`h-[36px] w-[36px] items-center justify-center rounded-full ${biometricEnabled ? 'bg-brand' : 'bg-ice'}`}>
+            className={`h-[36px] w-[36px] items-center justify-center rounded-full ${biometricEnabled ? 'bg-brand' : 'bg-brand/5'}`}>
             <Icon name="shield" size={18} color={biometricEnabled ? '#FFFFFF' : Palette.brand} filled={biometricEnabled} />
           </Pressable>
         </View>
@@ -200,7 +200,7 @@ export default function GlobalScreen() {
             { value: activePasses, label: '패스 예약', color: 'text-success' },
             { value: counselingRequests.length, label: '상담 신청', color: 'text-accent' },
           ].map((stat) => (
-            <View key={stat.label} className="flex-1 items-center rounded bg-ice p-sm">
+            <View key={stat.label} className="flex-1 items-center rounded bg-brand/5 p-sm">
               <Text className={`text-headline-md font-bold ${stat.color}`}>
                 {stat.value}
                 <Text className="text-label-sm font-normal text-muted"> 건</Text>
@@ -244,7 +244,7 @@ export default function GlobalScreen() {
                   </Text>
                   <Text className="mt-xxs text-body-sm text-muted">{svc.subtitle}</Text>
                 </View>
-                <View className="h-[40px] w-[40px] items-center justify-center rounded bg-ice">
+                <View className="h-[40px] w-[40px] items-center justify-center rounded bg-brand/5">
                   <Icon
                     name={svc.kind === 'language-dev' ? 'megaphone' : 'programs'}
                     size={22}
@@ -254,7 +254,7 @@ export default function GlobalScreen() {
               </View>
 
               {svc.kind === 'language-dev' && svc.nextSession ? (
-                <View className="flex-row items-center justify-between rounded bg-ice p-sm">
+                <View className="flex-row items-center justify-between rounded bg-brand/5 p-sm">
                   <View className="flex-1 flex-row items-center gap-xs">
                     <Icon name="calendar" size={18} color={Palette.brand} />
                     <View className="flex-1">
@@ -267,7 +267,7 @@ export default function GlobalScreen() {
                   <Pressable
                     accessibilityRole="button"
                     onPress={() => router.push('/reserve')}
-                    className="rounded bg-canvas px-sm py-xxs active:opacity-70">
+                    className="rounded bg-white/75 px-sm py-xxs active:opacity-70">
                     <Text className="text-label-sm font-semibold text-brand">일정 변경</Text>
                   </Pressable>
                 </View>
@@ -284,7 +284,7 @@ export default function GlobalScreen() {
                       {svc.progressTotal - (svc.progressDone ?? 0)}회 남음
                     </Text>
                   </View>
-                  <View className="h-[8px] w-full overflow-hidden rounded-full bg-ice">
+                  <View className="h-[8px] w-full overflow-hidden rounded-full bg-brand/5">
                     <View
                       className="h-full rounded-full bg-success"
                       style={{ width: `${((svc.progressDone ?? 0) / svc.progressTotal) * 100}%` }}
@@ -335,7 +335,7 @@ export default function GlobalScreen() {
       </View>
 
       {/* 마이 서랍 */}
-      <View className="mt-lg overflow-hidden rounded-md border border-line bg-canvas">
+      <View className="mt-lg overflow-hidden rounded-md border border-white/70 bg-white/75">
         <View className="px-md pb-xs pt-md">
           <Text className="text-title-lg font-bold text-brand-deep">마이 서랍 및 모바일 증명</Text>
         </View>
@@ -344,11 +344,11 @@ export default function GlobalScreen() {
             key={item.title}
             accessibilityRole="button"
             onPress={() => (item.href ? router.push(item.href) : item.onPress?.())}
-            className={`flex-row items-center justify-between px-md py-sm active:bg-ice ${
-              index === 0 ? '' : 'border-t border-line'
+            className={`flex-row items-center justify-between px-md py-sm active:bg-brand/5 ${
+              index === 0 ? '' : 'border-t border-brand/10'
             }`}>
             <View className="flex-1 flex-row items-center gap-sm">
-              <View className="h-[36px] w-[36px] items-center justify-center rounded-full bg-ice">
+              <View className="h-[36px] w-[36px] items-center justify-center rounded-full bg-brand/5">
                 <Icon name={item.icon} size={18} color={Palette.brand} />
               </View>
               <View className="flex-1">
