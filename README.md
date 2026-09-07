@@ -184,6 +184,10 @@ familyNet/
 
 ## 📅 작업 내역 (Changelog)
 
+### 2026-09-08 (7차) — GitHub Actions 듀얼 배포 모드(Pages/Branch) 연동 및 점검
+- **배포 방식 이중화**: `peaceiris/actions-gh-pages`(`gh-pages` 브랜치)와 `actions/deploy-pages`(GitHub Actions direct)를 모두 지원하도록 `.github/workflows/ci.yml` 보강
+- **배포 및 빌드 상태 점검**: 최신 워크플로우 실행(`CI & GitHub Pages Deploy`) 성공(Success) 및 `gh-pages` 브랜치 정상 푸시 확인, GitHub Pages 활성화 가이드 보강
+
 ### 2026-09-08 (6차) — GitHub Pages 웹 배포 환경 구축
 - **GitHub Pages 서브패스 연동**: `app.json`에 `experiments.baseUrl: "/familynet_app"` 적용하여 `https://lebass98.github.io/familynet_app/`에서 모든 번들과 에셋 경로가 정상 동작하도록 설정
 - **정적 빌드 자동화 스크립트(`scripts/build-web.js`)**:

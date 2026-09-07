@@ -67,7 +67,7 @@ export default function GlobalScreen() {
   return (
     <Screen header contentClassName="px-md">
       {/* 다누리 언어 선택 */}
-      <View className="-mx-md bg-brand-soft/70 px-md py-xs">
+      <View className="mt-xs rounded-md bg-white/55 px-sm py-xs">
         <View className="mb-xs flex-row items-center justify-between">
           <View className="flex-row items-center gap-xxs">
             <Icon name="translate" size={18} color={Palette.brand} />

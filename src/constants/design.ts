@@ -51,4 +51,4 @@ export const MaxContentWidth = 640;
 
 /** 플로팅 글래스 탭바 높이 + 아래 여백 (세이프에어리어 제외) */
 export const TabBarHeight = 72;
-export const TabBarOffset = 20;
+export const TabBarOffset = Platform.OS === 'web' ? 20 : 14;

@@ -67,3 +67,12 @@ jobs:
           publish_dir: ./dist
           keep_files: false
           enable_jekyll: false
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: Deploy to GitHub Pages (Actions Mode)
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
