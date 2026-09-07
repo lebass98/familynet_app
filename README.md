@@ -154,16 +154,43 @@ familyNet/
 
 ---
 
-## 🔄 GitHub Actions CI
+## 🌐 GitHub Pages 배포 (Live Demo)
+
+- **공개 배포 URL**: [https://lebass98.github.io/familynet_app/](https://lebass98.github.io/familynet_app/)
+- **자동 배포 파이프라인**:
+  - `main` 브랜치에 `push` 시 GitHub Actions(`.github/workflows/ci.yml`)가 자동으로 린트·타입검사 후 `scripts/build-web.js`로 정적 사이트를 빌드하고 `gh-pages` 브랜치로 배포합니다.
+  - 서브패스(`/familynet_app/`) 에셋 참조를 위해 `app.json`에 `experiments.baseUrl`이 설정되어 있습니다.
+  - Jekyll의 `_expo/` 정적 에셋 무시 방지(`.nojekyll`) 및 SPA 클라이언트 라우팅 404 방지(`404.html`)가 자동 생성됩니다.
+- **수동 배포 명령어**:
+  ```bash
+  npm run deploy
+  ```
+- **GitHub 저장소 설정 (초기 1회 확인)**:
+  1. GitHub 저장소 `Settings` 탭 진입
+  2. 좌측 메뉴 `Pages` 클릭
+  3. `Build and deployment` > `Source`를 **Deploy from a branch**로 선택
+  4. `Branch`를 **`gh-pages`** / `/(root)`로 선택 후 저장
+
+---
+
+## 🔄 GitHub Actions CI & 배포
 
 `.github/workflows/ci.yml`을 통해 모든 `push` 및 `pull_request` 발생 시 다음 작업이 자동 수행됩니다:
 1. **TypeScript 타입 검사** (`npx tsc --noEmit`)
 2. **ESLint 정적 분석** (`npm run lint`)
-3. **웹 프로덕션 번들 빌드 검증** (`npx expo export --platform web`)
+3. **GitHub Pages 웹 빌드 및 배포** (`npm run build:web` → `gh-pages` 브랜치 배포)
 
 ---
 
 ## 📅 작업 내역 (Changelog)
+
+### 2026-09-08 (6차) — GitHub Pages 웹 배포 환경 구축
+- **GitHub Pages 서브패스 연동**: `app.json`에 `experiments.baseUrl: "/familynet_app"` 적용하여 `https://lebass98.github.io/familynet_app/`에서 모든 번들과 에셋 경로가 정상 동작하도록 설정
+- **정적 빌드 자동화 스크립트(`scripts/build-web.js`)**:
+  - `dist/.nojekyll` 자동 생성: GitHub Pages Jekyll 엔진에 의한 `_expo/` 정적 디렉터리 404 차단 방지
+  - `dist/404.html` 자동 복제: SPA 클라이언트 라우팅 새로고침 및 서브경로 직접 접속 지원
+- **배포 스크립트 및 의존성 추가**: `gh-pages` 패키지 설치, `npm run build:web`, `npm run deploy` 명령어 등록 및 초기 `gh-pages` 브랜치 생성/배포 완료
+- **GitHub Actions 워크플로우 갱신**: `main` 푸시 시 린트·타입검사 완료 후 자동으로 GitHub Pages(`gh-pages` 브랜치)로 배포되도록 CI 파이프라인 업그레이드
 
 ### 2026-09-08 (5차) — 여백 2배 확대
 - 여백 토큰을 약 2배로 상향(xxs 8 · xs 14 · sm 20 · md 28 · lg 44 · xl 60 · 2xl 88 · 3xl 120)해 화면 가장자리·카드 내부·섹션 간격을 넉넉하게 조정, 플로팅 탭바 하단 여백 20px

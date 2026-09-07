@@ -42,6 +42,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "build:web": "node scripts/build-web.js",
+    "predeploy": "npm run build:web",
+    "deploy": "gh-pages -d dist --dotfiles --nojekyll -m \"배포: GitHub Pages 웹 배포\"",
     "lint": "expo lint"
   },
   "private": true
